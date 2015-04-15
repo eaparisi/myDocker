@@ -1,0 +1,20 @@
+
+// To build docker image
+docker build -t eparisi/devgen --force-rm=true .
+
+http://172.17.42.1  (desde otro container)
+
+// To instantiate docker image (create docker container)
+docker run --env ROOTPASS=devpass 
+	   --env MYDOMAIN=yesweadtest.com.ar
+	   --env MYWEBROOT=basic
+	   --env DBNAME=yesweadDB
+	   -p 1022:22 
+	   -p 1080:80 
+	   -p 3306:3306 
+	   -v /home/eric/git/yii2test:/var/www/yii:rw
+	   --name YesWeAdTest
+	   -t eparisi/yeswead_test2
+
+docker run --env ROOTPASS=devpass --env MYDOMAIN=yesweadtest.com.ar --env MYWEBROOT=basic --env DBNAME=yesweadDB -p 1022:22 -p 1080:80 -p 3306:3306 -v /home/eric/git/yii2test:/var/www/yii:rw --name YesWeAdTest -t eparisi/yeswead_test2
+
